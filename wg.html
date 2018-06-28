@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+    <script>
+      $.ajax({
+        url: 'http://localhost.com/wholegrain/wp-json/wp/v2/recipe' /* REPLACE THIS URL */,
+        dataType: 'json',
+        type: 'get',
+        cache: false,
+        success: function (data) { 
+          $(data).each(function(index, value) {
+            var jtitle = value.title.rendered;
+            var jcontent = value.content.rendered;
+            var jing = value.ing;
+            var jcat = value.cat_names;
+            $('#each').append('<h2 class="yo">' + jtitle + '</h2><h3>' + jcat + '</h3><div class="content">' + jcontent + '</div><div class="jing">' + jing + '</div>');
+          });
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div id="each"></div>
+  </body>
+</html>
